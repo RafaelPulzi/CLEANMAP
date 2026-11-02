@@ -1,0 +1,23 @@
+{
+  "name": "routing-machine-leaflet-swm",
+  "version": "0.1.0-snapshot",
+  "description": "Uma aplicação web para exibir mapas interativos com cálculo de rotas.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "jest --coverage --verbose"
+  },
+  "author": "Gustavo de Almeida Pacheco <gustavoapacheco@yahoo.com.br>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "leaflet": "^1.9.4",
+    "leaflet-routing-machine": "^3.2.12",
+    "node-fetch": "^2.7.0",
+    "puppeteer": "^24.14.0"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0",
+    "supertest": "^7.2.2"
+  }
+}

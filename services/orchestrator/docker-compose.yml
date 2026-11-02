@@ -1,0 +1,89 @@
+
+services:
+  # ----------------------------------------------------------------
+  # 1. API DE ROTAS (Node.js/Puppeteer)
+  # Gera a imagem da rota e salva no volume compartilhado
+  # ----------------------------------------------------------------
+  routing-api:
+    build: 
+      context: ../routing-machine
+    container_name: map-generator-app
+    restart: always
+    environment:
+      - PORT=3004
+      - MAPBOX_API_KEY=${MAPBOX_API_KEY}
+    volumes:
+      # Mapeia o volume para onde o server.js salva as imagens
+      - shared_assets:/app/assets/images
+    networks:
+      - tcc-network
+    # Healthcheck para garantir que o Node subiu antes de ser chamado
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3004/render-map"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ----------------------------------------------------------------
+  # 2. API DO MODELO (Python/Flask/YOLO)
+  # Recebe a imagem do pipeline -> Prediz -> Se >80%, chama routing-api
+  # ----------------------------------------------------------------
+  ml-api:
+    build: 
+      context: ../ml-model-cnn
+    container_name: tcc-modelo-cnn
+    restart: always
+    environment:
+      # Define a URL da API de rotas para o código Python usar
+      - ROUTING_API_URL=http://routing-api:3004/api/gerar-imagem-rota
+    ports:
+      - "3001:3001"
+    networks:
+      - tcc-network
+    healthcheck:
+      # Tenta conectar na raiz. Se der 404 ou 200, significa que o servidor respondeu (sucesso).
+      # Se a conexão for recusada, o comando falha.
+      test: ["CMD-SHELL", "curl -s http://localhost:3001 > /dev/null || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+
+  # ----------------------------------------------------------------
+  # 3. PIPELINE PRINCIPAL (Python Script)
+  # Baixa do B2 -> Envia p/ ML -> Lê resultado do volume
+  # ----------------------------------------------------------------
+  pipeline-core:
+    build: 
+      context: ../data-workflow
+    container_name: pipeline-processamento
+    environment:
+      # URLs internas do Docker
+      - ML_API_URL=http://ml-api:3001/predict
+      # Configurações de diretório
+      - SECRETS_DIR=/app/repository
+      - RESULTS_DIR=/app/result
+      - TZ=America/Sao_Paulo
+    volumes:
+      # Lê as imagens geradas pelo routing-api e salva os resultados finais
+      - shared_assets:/app/assets/images
+      # Monta os arquivos de configuração originais (config.yaml)
+      - ../data-workflow/config.yaml:/app/config.yaml
+      # Monta os secrets (secretOrigem.env)
+      - ../data-workflow/repository:/app/repository
+      # Onde os resultados (txt) serão salvos na sua máquina real
+      - ../data-workflow/result:/app/result
+    networks:
+      - tcc-network
+    depends_on:
+      ml-api:
+        condition: service_healthy 
+      routing-api:
+        condition: service_started
+
+volumes:
+  shared_assets: # O "disco" compartilhado entre os 3 containers
+
+networks:
+  tcc-network:
+    driver: bridge

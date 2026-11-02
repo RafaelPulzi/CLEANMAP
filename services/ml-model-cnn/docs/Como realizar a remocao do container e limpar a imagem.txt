@@ -1,0 +1,55 @@
+1. Como Parar e Remover o Contêiner
+
+Primeiro, você para o contêiner. Depois de parado, ele ainda existe no sistema, apenas não está em execução. Se você não precisar mais dele, pode removê-lo.
+
+Passo 1.1: Parar o Contêiner
+
+Para parar a execução do contêiner chamado tcc-container-bitnami, utilize o comando docker stop. Este comando envia um sinal para a aplicação dentro do contêiner, permitindo que ela finalize de forma organizada.
+Bash
+
+docker stop tcc-container-bitnami
+
+Após executar o comando, se você listar os contêineres em execução com docker ps, ele não aparecerá mais. No entanto, se você usar a flag -a para ver todos os contêineres (inclusive os parados), ele ainda estará lá com o status "Exited".
+Bash
+
+# Para confirmar que ele está parado (opcional)
+docker ps -a
+
+Passo 1.2: Remover o Contêiner Parado
+
+Depois de parado, você pode remover o contêiner para liberar o nome e limpar o sistema. Use o comando docker rm.
+Bash
+
+docker rm tcc-container-bitnami
+
+Dica: Você pode forçar a parada e a remoção de um contêiner em um único passo com a flag -f no comando rm. Isso é útil para limpezas rápidas.
+Bash
+
+# Este comando para e remove o contêiner de uma só vez
+docker rm -f tcc-container-bitnami
+
+2. Como Remover a Imagem Docker
+
+A remoção da imagem (tcc-model-bitnami) libera o espaço em disco que ela ocupa.
+
+Pré-requisito Importante:
+
+Você não pode remover uma imagem se houver algum contêiner (mesmo que parado) que foi criado a partir dela. Portanto, você deve remover o contêiner primeiro, como mostrado no passo anterior.
+
+Passo 2.1: Listar as Imagens (Opcional)
+
+Para ver todas as imagens que você tem localmente e confirmar o nome e o ID da imagem, use o comando docker images.
+Bash
+
+docker images 
+
+Você verá a imagem tcc-model-bitnami na lista.
+
+Passo 2.2: Remover a Imagem
+
+Use o comando docker rmi (remove image) seguido pelo nome ou ID da imagem.
+Bash
+
+docker rmi tcc-model-bitnami
+
+Se o comando for executado com sucesso, a imagem foi removida do seu sistema. Se você receber um erro dizendo que a imagem está em uso ("image is being used by stopped container"), significa que você esqueceu de remover o contêiner (Passo 1.2).

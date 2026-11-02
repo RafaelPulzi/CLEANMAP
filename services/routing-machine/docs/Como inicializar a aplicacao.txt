@@ -1,0 +1,12 @@
+1 - Caso voce nao tenha instalado a aplicacao na sua maquina, abra um terminal e escreva 'npm install' para realizar a instalacao das dependencias;
+2 - Apos aplicar uma correcao, ou atualizacao de versao, basta apenas escrever em um terminal 'npm start' para inicializar o servidor;
+2.5 - Caso queira buildar e inicializar o container docker da aplicacao, faca: 'docker build -t map-generator .' e para executar 'docker run -p 3004:3004 --name map-generator-app -v "${pwd}/assets/images:/app/assets/images" map-generator'.
+3 - O servidor sera startado, bastando apenas ir ao postman e escrever uma nova collection, para este endereco: 'http://localhost:3004/api/gerar-imagem-rota' e dizer que o metodo e post;
+4 - Em Body, escreva o payload no formato 'raw' > 'Json' e no corpo da requisicao, escreva uma requisicao com mais ou menos este formato:
+{
+  "origem_latitude": -23.550276,
+  "origem_longitude": -46.641542,
+  "destino_latitude": -23.584444,
+  "destino_longitude": -46.581944
+}
+5 - Agora, basta apenas clicar em send, ele inicializara o teste de integracao e ao final do processamento do servidor ele vai gerar a imagem da rota no diretorio assets/images com o contador dinamico. 

@@ -1,0 +1,15 @@
+Como Executar o modelo gerado via terminal na raiz do projeto.
+
+Com esta estrutura, você pode controlar todo o projeto a partir do terminal, na pasta raiz TCC_Modelo_CNN_SWM/:
+
+Para treinar o modelo:
+
+no terminal: python main.py train
+
+    Opcional: Se o seu config.yaml estivesse em outro lugar: python main.py --config configs/v2.yaml train
+
+Para fazer uma previsão com o modelo treinado:
+
+no terminal: python main.py predict --image data/processed/test/classe_A/imagem_qualquer.jpg
+
+Este design modular e centralizado não só organiza seu código, mas também facilita a experimentação (trocando apenas partes do config.yaml), a automação e a colaboração no projeto.

@@ -1,0 +1,13 @@
+Segue passo a passo de como inicializar este projeto em sua maquina e testa-lo:
+
+1 - Crie o ambiente virtual, usando: python3 -m venv .venv;
+2 - Realize a injecao de dependencias, usando o comando: pip install -r requirements.txt
+3 - Crie o diretorio raw, na raiz do projeto;
+4 - Crie o diretorio repository, na raiz do projeto;
+5 - Crie os arquivos 'secretOrigem.env' e 'secretDestino.env' no diretorio repository;
+6 - No arquivo 'secretOrigem.env' escreva, linha 1: origem_latitude=-23.550276 e linha 2: origem_longitude=-46.641542;
+7 - No arquivo 'secretDestino.env' escreva, linha 1: destino_latitude=-23.584444 e linha 2: destino_longitude=-46.581944;
+8 - No arquivo 'run_pipeline.ps1', modifique as rotas do modelo, leaflet e projeto atual para corresponderem a seu projeto e sua estrutura de diretorios;
+9 - Nao se esqueca de acessar os docs/ dos demais projetos para configurar corretamente eles tambem;
+10 - O codigo de integracao com o arduino ja esta funcional no diretorio 'C:\Projetos\TCC\TCC_workflow_data_SWM\src\tcc_job_processor\api_client.py\.get_origin_location()' e no fluxo principal do orquestrador 'app.py';
+11 - Qualquer coisa que nao funcionar, pode me contatar que resolvemos juntos, ate rodar na sua maquina.

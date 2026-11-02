@@ -1,0 +1,15 @@
+1 - Com o git clone realizado na sua maquina, e nescessario primeiramente voce criar os diretorios que vou te passar aqui:
+Dentro de data, crie 'raw' e 'processed'
+Dentro de raw, crie 'lata', 'garrafa', 'tenis' e 'caixa_de_papelao'
+Dentro de processed, crie 'train' e 'validation'
+Dentro de train, crie 'lata', 'garrafa', 'tenis' e 'caixa_de_papelao'
+Dentro de validation, crie 'lata', 'garrafa', 'tenis' e 'caixa_de_papelao'
+Volte a raiz do projeto e crie o diretorio 'models'
+2 - Agora abra seu terminal, e crie o ambiente virtual 'python3 -m venv .venv'
+3 - Com o ambiente instalado, escreva 'source .venv/bin/activate' para ativar o ambiente
+4 - Agora escreva com o ambiente ativado, no terminal 'pip install -r requirements.txt'
+5 - Com a injecao de dependencias feita, e nescessario comecar o trabalho de aumenatar a base de dados (somente para o diretorio raw e suas pastas, nao mexa em processed), sugestao de base para extracao inicial: 'https://www.kaggle.com/datasets/alistairking/recyclable-and-household-waste-classification'
+6 - Com os dados em raw preenchidos, e nescessario configurar o seu postman, crie uma nova collection, e escreva na url: 'http://localhost:3001/predict' e um metodo post
+7 - Em body, escreva inicialmente um payload com 'raw' e 'json' e no seu corpo de requiscao escreva (apenas): {"command": "train"}
+8 - Temos que escrever mais uma nova configuracao para predicao agora, em body va para 'form-data', na primeira key escreva: 'command' e na sua value escreva: 'predict', crei uma nova chave, nesta nova chave escreva em key: 'image' e no seu value sette como file e faca o upload de uma imagem neste value.
+9 - Se em algum passo ficou um item faltante entre em contato comigo, agora siga o passo a passo do doc 'Como executar o projeto docker.txt'

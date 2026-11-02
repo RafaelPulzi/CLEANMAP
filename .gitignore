@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Secrets / ambiente
+.env
+*.env
+!.env.example
+repository/
+result/
+
+# Modelos / artefatos pesados
+*.pt
+*.avi
+runs/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

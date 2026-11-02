@@ -1,0 +1,16 @@
+# Configurações gerais da aplicação e do pipeline
+
+# Caminhos (Paths)
+image_source_dir: 'C:\Projetos\TCC\TCC_workflow_data_SWM\raw'
+secrets_dir: 'C:\Projetos\TCC\TCC_workflow_data_SWM\repository'
+results_dir: 'C:\Projetos\TCC\TCC_workflow_data_SWM\result'
+project_root_dir: 'C:\Projetos\TCC\TCC_workflow_data_SWM'
+
+# Configurações da Imagem
+image_pattern: 'imagem*.jpg'
+resize_dimensions: [256, 256]
+max_file_size_mb: 10
+
+# Configurações da API
+api_endpoint: 'http://localhost:3001/predict'
+location_api_endpoint: 'http://localhost:3006/location'

@@ -1,0 +1,13 @@
+{
+  "name": "geo-server",
+  "version": "1.0.0",
+  "description": "Servidor de geolocalização lendo Arduino via serial",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "serialport": "^11.0.0"
+  }
+}

@@ -1,0 +1,1 @@
+Continuar a explorar a ferramenta pathlib e remover os paths estaticos para path dinamicos, para ver se remove a excessao dos paths e testar se o servico esta funcionando com o teste de integracao via postman. 

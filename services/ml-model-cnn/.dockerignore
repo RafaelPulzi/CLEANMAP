@@ -1,0 +1,8 @@
+.venv
+.git
+__pycache__
+*.ipynb
+data/
+docs/
+new_model/
+README.md

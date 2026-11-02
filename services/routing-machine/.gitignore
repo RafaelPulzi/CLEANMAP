@@ -1,0 +1,48 @@
+# Ignora o diretório de dependências do Node.js.
+# Deve ser gerado localmente com 'npm install'.
+node_modules/
+
+# Build artifacts
+# Ignora os arquivos de build gerados.
+dist/
+build/
+.out/
+.next/
+
+# Log files
+# Ignora arquivos de log para evitar expor dados sensíveis.
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+# Ignora arquivos de variáveis de ambiente por segurança. NUNCA versione chaves de API.
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+credentials.json
+
+# Permite que o arquivo de exemplo de .env seja versionado.
+!.env.example
+
+# Editor directories and files
+# Ignora configurações de IDEs e editores para evitar conflitos de ambiente.
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Operating System files
+# Ignora arquivos gerados pelo SO.
+.DS_Store
+Thumbs.db
+
+# Cache
+.npm/
+.yarn/cache
+
+# Arquivo de imagens gerados
+assets/images/*.png
